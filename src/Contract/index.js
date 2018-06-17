@@ -4,7 +4,13 @@ export default class Contract extends React.Component {
   render() {
     return (
       <div>
-        <textarea rows="4" cols="50" placeholder="Contract"></textarea>
+        <textarea
+          rows="4"
+          cols="50"
+          placeholder="Contract"
+          onChange={(event) => this.props.update(event.target.key)}>
+          {this.props.model}
+        </textarea>
       </div>
     );
   }

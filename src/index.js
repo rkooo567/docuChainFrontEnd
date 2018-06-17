@@ -10,13 +10,36 @@ import Contract from './Contract/index';
 import Footer from './Footer/index';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      signee1: {
+        name: 'Signee 1 Name',
+        publicKey: 'Signee 1 Key',
+      },
+      signee2: {
+        name: 'Signee 2 Name',
+        publicKey: 'Signee 2 Key',
+      },
+      contract: 'Contract text',
+    };
+  }
+  update(field, payload) {
+    const newState = Object.assign(this.state);
+    newState[field] = Object.assign(newState[field], payload);
+    this.setState(newState);
+  }
+  submit() {
+    alert(JSON.stringify(this.state, null, 2));
+  }
   render() {
     return (
       <div>
         <Header />
-        <Signee />
-        <Signee />
-        <Contract />
+        <Signee model={this.state.signee1} update={(payload) => this.update('signee1', payload)} />
+        <Signee model={this.state.signee2} update={(payload) => this.update('signee2', payload)} />
+        <Contract model={this.state.contract} update={(payload) => this.update('contract', payload)} />
+        <input type="button" onClick={this.submit.bind(this)} value="Submit" />
         <Footer />
       </div>
     );

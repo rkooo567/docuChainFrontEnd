@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Web3Provider } from 'react-web3';
+
 import './index.css';
 
 import Header from './Header/index';
@@ -21,4 +23,7 @@ class App extends React.Component {
   }
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <App />
+  , document.getElementById('root')
+);

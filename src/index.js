@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Web3Provider } from 'react-web3';
+// import { Web3Provider } from 'react-web3';
 
 import Header from './Header/index';
 import Footer from './Footer/index';

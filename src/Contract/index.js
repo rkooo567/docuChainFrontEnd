@@ -8,7 +8,7 @@ export default class Contract extends React.Component {
           rows="4"
           cols="50"
           placeholder="Contract"
-          onChange={(event) => this.props.update(event.target.key)}>
+          onChange={(event) => this.props.update(event.target.value)}>
           {this.props.model}
         </textarea>
       </div>

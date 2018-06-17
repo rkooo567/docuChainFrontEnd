@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Web3Provider } from 'react-web3';
+// import { Web3Provider } from 'react-web3';
 
 import './index.css';
 
@@ -14,23 +14,40 @@ class App extends React.Component {
     super(props);
     this.state = {
       signee1: {
-        name: 'Signee 1 Name',
-        publicKey: 'Signee 1 Key',
+        name: '',
+        key: '',
       },
       signee2: {
-        name: 'Signee 2 Name',
-        publicKey: 'Signee 2 Key',
+        name: '',
+        key: '',
       },
-      contract: 'Contract text',
+      contract: '',
     };
   }
   update(field, payload) {
     const newState = Object.assign(this.state);
-    newState[field] = Object.assign(newState[field], payload);
+    switch (typeof payload) {
+      case 'string': {
+        newState[field] = payload;
+        break
+      }
+      case 'object': {
+        newState[field] = Object.assign(newState[field], payload);
+        break;
+      }
+      default: {}
+    }
     this.setState(newState);
   }
   submit() {
-    alert(JSON.stringify(this.state, null, 2));
+    const areSigneeFieldsDefined = (signee) => {
+      return signee.name.length && signee.key.length;
+    }
+    if (areSigneeFieldsDefined(this.state.signee1)
+      && areSigneeFieldsDefined(this.state.signee2)
+      && this.state.contract.length) {
+      alert(JSON.stringify(this.state, null, 2));
+    }
   }
   render() {
     return (
